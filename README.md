@@ -24,7 +24,7 @@
 Склонируйте проект на локальную машину:
 ```bash
 git clone https://github.com/lolevan/car-management.git
-cd car-management/project
+cd car-management
 ```
 
 ### 2. Создание виртуального окружения
@@ -44,19 +44,19 @@ pip install -r requirements.txt
 ### 4. Выполнение миграций
 Примените миграции для настройки базы данных:
 ```bash
-python manage.py migrate
+python project/manage.py migrate
 ```
 
 ### 5. Создание суперпользователя
 Для доступа к административной панели создайте суперпользователя:
 ```bash
-python manage.py createsuperuser
+python project/manage.py createsuperuser
 ```
 
 ### 6. Запуск сервера разработки
 Запустите сервер разработки:
 ```bash
-python manage.py runserver
+python project/manage.py runserver
 ```
 
 Откройте браузер и перейдите по адресу: [http://127.0.0.1:8000](http://127.0.0.1:8000)
