@@ -1,30 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
     <title>Список автомобилей</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Список автомобилей</h1>
+<div class="container mt-5">
+    <h1 class="mb-4">Список автомобилей</h1>
+
     {% if user.is_authenticated %}
-        <p><a href="{% url 'car_create' %}">Добавить новый автомобиль</a></p>
-        <p>
-            <form method="post" action="{% url 'logout' %}">
+        <div class="mb-3">
+            <a href="{% url 'car_create' %}" class="btn btn-success">Добавить новый автомобиль</a>
+        </div>
+        <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit">Выйти</button>
-            </form>
-        </p>
+            <button type="submit" class="btn btn-outline-danger mb-4">Выйти</button>
+        </form>
     {% else %}
-        <p><a href="{% url 'login' %}">Войти</a> или <a href="{% url 'register' %}">зарегистрироваться</a></p>
+        <p>
+            <a href="{% url 'login' %}">Войти</a> или
+            <a href="{% url 'register' %}">зарегистрироваться</a>
+        </p>
     {% endif %}
-    <ul>
+
+    <ul class="list-group">
         {% for car in cars %}
-            <li>
+            <li class="list-group-item">
                 <a href="{% url 'car_detail' car.id %}">
                     {{ car.make }} {{ car.model }} ({{ car.year }})
                 </a>
-                – владелец: {{ car.owner.username }}
+                — <span class="text-muted">владелец: {{ car.owner.username }}</span>
             </li>
+        {% empty %}
+            <li class="list-group-item">Автомобилей пока нет.</li>
         {% endfor %}
     </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
