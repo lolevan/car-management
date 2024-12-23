@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список автомобилей</title>
+</head>
+<body>
+    <h1>Список автомобилей</h1>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'car_create' %}">Добавить новый автомобиль</a></p>
+        <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войти</a> или зарегистрироваться</p>
+    {% endif %}
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{% url 'car_detail' car.id %}">
+                    {{ car.make }} {{ car.model }} ({{ car.year }})
+                </a>
+                – владелец: {{ car.owner.username }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

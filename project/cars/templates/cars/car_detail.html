@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ car.make }} {{ car.model }}</title>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }} ({{ car.year }})</h1>
+    <p>{{ car.description }}</p>
+    <p>Владелец: {{ car.owner.username }}</p>
+
+    {% if user.is_authenticated and car.owner == user %}
+        <p>
+            <a href="{% url 'car_update' car.id %}">Редактировать</a> |
+            <a href="{% url 'car_delete' car.id %}">Удалить</a>
+        </p>
+    {% endif %}
+
+    <h2>Комментарии:</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author.username }}</strong> ({{ comment.created_at }}):
+                {{ comment.content }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <h3>Добавить комментарий</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+    <p><a href="{% url 'car_list' %}">Назад к списку</a></p>
+</body>
+</html>

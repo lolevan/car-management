@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удалить автомобиль</title>
+</head>
+<body>
+    <h1>Удалить автомобиль: {{ car.make }} {{ car.model }}?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Подтвердить удаление</button>
+    </form>
+    <p><a href="{% url 'car_detail' car.id %}">Отмена</a></p>
+</body>
+</html>
