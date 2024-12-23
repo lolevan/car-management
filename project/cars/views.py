@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from .models import Car, Comment
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
+from .models import Car
 
 from .forms import CommentForm, CarForm
 
-from django.contrib.auth.models import User
 
 
 def car_list(request):
@@ -86,3 +88,15 @@ def car_delete(request, car_id):
 
     # Для подтверждения удаления можно отрендерить отдельный шаблон
     return render(request, 'cars/car_delete_confirm.html', {'car': car})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('car_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'cars/register.html', {'form': form})

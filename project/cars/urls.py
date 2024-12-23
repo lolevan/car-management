@@ -5,6 +5,7 @@ from .views import (
     car_create,
     car_update,
     car_delete,
+    register,
 )
 
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('cars/create/', car_create, name='car_create'),
     path('cars/<int:car_id>/edit/', car_update, name='car_update'),
     path('cars/<int:car_id>/delete/', car_delete, name='car_delete'),
+    path('register/', register, name='register'),
 ]
