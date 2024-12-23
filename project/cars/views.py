@@ -9,7 +9,6 @@ from .models import Car
 from .forms import CommentForm, CarForm
 
 
-
 def car_list(request):
     """ Список автомобилей (главная страница) """
     cars = Car.objects.all().order_by('-created_at')
