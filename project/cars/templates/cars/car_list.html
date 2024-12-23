@@ -7,9 +7,14 @@
     <h1>Список автомобилей</h1>
     {% if user.is_authenticated %}
         <p><a href="{% url 'car_create' %}">Добавить новый автомобиль</a></p>
-        <p><a href="{% url 'logout' %}">Выйти</a></p>
+        <p>
+            <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Выйти</button>
+            </form>
+        </p>
     {% else %}
-        <p><a href="{% url 'login' %}">Войти</a> или зарегистрироваться</p>
+        <p><a href="{% url 'login' %}">Войти</a> или <a href="{% url 'register' %}">зарегистрироваться</a></p>
     {% endif %}
     <ul>
         {% for car in cars %}

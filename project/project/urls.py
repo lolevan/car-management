@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 from rest_framework import routers
 
-from ..cars.api_views import CarViewSet, CommentViewSet
+from cars.api_views import CarViewSet, CommentViewSet
 
 
 router = routers.DefaultRouter()
