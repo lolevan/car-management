@@ -108,14 +108,12 @@ Authorization: Token 7d32398a47c232948d6d8b0502f0d854bbb41d6f
 
 Пример запроса для получения всех машин:
   ```bash
-  curl -X GET http://127.0.0.1:8000/api/cars/ \
-  -H "Authorization: Token <your-token>"
+  curl -X GET http://127.0.0.1:8000/api/cars/
   ```
 
 Пример запроса для получения одной машины:
   ```bash
-  curl -X GET http://127.0.0.1:8000/api/cars/1/ \
-  -H "Authorization: Token <your-token>"
+  curl -X GET http://127.0.0.1:8000/api/cars/1/
   ```
 
 Пример запроса для создания автомобиля:
